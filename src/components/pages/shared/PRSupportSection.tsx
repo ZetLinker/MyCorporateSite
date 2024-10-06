@@ -1,0 +1,693 @@
+import React, { useRef } from "react";
+import { Box, Typography, Grid, useMediaQuery, useTheme } from "@mui/material";
+import CustomRectangle from "../../util/CustomRectangle";
+import CircularText from "../../util/CircularText";
+
+const PRSupportSection: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  // Service items data for PR Support
+  const services = [
+    {
+      number: "01.",
+      title: "SNS広告",
+      description:
+        "Facebook、Instagram、TwitterなどのSNSプラットフォームを利用して、特定のターゲットに直接アプローチ。地域や興味・関心に基づく細かなターゲティングが可能です。",
+    },
+    {
+      number: "02.",
+      title: "検索連動型広告",
+      description:
+        "GoogleやYahooの検索結果に表示される広告で、ユーザーが特定のキーワードを検索した際に関連する広告を表示。見込み顧客に効率よくリーチし、成果が期待できます。",
+    },
+    {
+      number: "03.",
+      title: "SEO対策",
+      description:
+        "検索エンジンでの自然検索順位を向上させるための対策を行い、ウェブサイトへの訪問者数を増加させます。地域や業界に特化したコンテンツで、検索結果の上位表示を目指します。",
+    },
+    {
+      number: "04.",
+      title: "MEO対策",
+      description:
+        "Googleマップなどの地図検索エンジンでの表示順位を上げる対策です。地域の店舗やサービスの発見を容易にし、地元顧客にリーチするための強力な手段です。",
+    },
+  ];
+
+  return (
+    <>
+      <Box
+        id="pr-support-section"
+        ref={sectionRef}
+        sx={{
+          position: "relative",
+          minHeight: { xs: "1900px", sm: "1450px", md: "1450px" }, // Adjusted xs minHeight
+          height: "auto",
+          width: "100vw",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: { xs: "40px 20px", sm: "80px 40px", md: "80px 40px" },
+        }}
+      >
+        {/* Title Section */}
+        <CustomRectangle
+          size={{
+            width: { xs: "80%", sm: "50%", md: "50%" },
+            height: { xs: "100px", sm: "150px", md: "150px" },
+          }}
+          zIndex={50}
+          direction={false}
+          sx={{
+            position: "absolute",
+            top: { xs: "5%", sm: "5%", md: "5%" },
+            right: { xs: "-5%", sm: "-5%", md: "-5%" },
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "30%",
+              left: "5%",
+            }}
+          >
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: "bold",
+                color: "black",
+                textAlign: "left",
+                fontSize: {
+                  xs: "16px",
+                  sm: "clamp(24px, 2.5vw, 30px)",
+                  md: "clamp(24px, 2.5vw, 30px)",
+                },
+                mx: 2,
+              }}
+            >
+              デジタルPR
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#e64525",
+                fontWeight: "bold",
+                textAlign: "left",
+                fontSize: {
+                  xs: "10px",
+                  sm: "clamp(12px, 2vw, 14px)",
+                  md: "clamp(12px, 2vw, 14px)",
+                },
+                mx: "16px",
+                letterSpacing: {
+                  xs: "0.05em",
+                  sm: "0.05em",
+                  md: "0.05em",
+                },
+              }}
+            >
+              - Digital Promotion
+            </Typography>
+          </Box>
+        </CustomRectangle>
+
+        <CustomRectangle
+          color={true}
+          size={{ width: "80%", height: "80px" }}
+          zIndex={49}
+          direction={true}
+          sx={{
+            position: "absolute",
+            top: { xs: "7%", sm: "13%", md: "13%" },
+            left: "-5%",
+          }}
+        />
+        <CustomRectangle
+          size={{
+            width: { xs: "90%", sm: "100%", md: "100%" },
+            height: { xs: "100px", sm: "100px", md: "100px" },
+          }}
+          zIndex={44}
+          direction={false}
+          sx={{
+            position: "absolute",
+            top: { xs: "35%", sm: "45%", md: "52%" },
+            right: { xs: "-5%", sm: "-5%", md: "-5%" },
+          }}
+        />
+
+        <CustomRectangle
+          size={{
+            width: { xs: "90%", sm: "70%", md: "70%" },
+            height: { xs: "100px", sm: "100px", md: "100px" },
+          }}
+          zIndex={44}
+          direction={true}
+          sx={{
+            position: "absolute",
+            top: { xs: "52%", sm: "65%", md: "80%" },
+            left: { xs: "-5%", sm: "-5%", md: "-5%" },
+          }}
+        />
+        <CustomRectangle
+          size={{
+            width: { xs: "90%", sm: "100%", md: "100%" },
+            height: { xs: "100px", sm: "100px", md: "100px" },
+          }}
+          zIndex={44}
+          direction={false}
+          sx={{
+            position: "absolute",
+            top: { xs: "72%", sm: "85%", md: "52%" },
+            right: { xs: "-5%", sm: "-5%", md: "-5%" },
+            display: { xs: "block", sm: "block", md: "none" }, // smのみ表示
+          }}
+        />
+        <CustomRectangle
+          size={{
+            width: { xs: "90%", sm: "80%" },
+            height: { xs: "100px", sm: "100px" },
+          }}
+          direction={true}
+          sx={{
+            position: "absolute",
+            top: { xs: "88%", sm: "73%" },
+            left: { xs: "-5%", sm: "-5%" },
+            display: { xs: "block", sm: "none", md: "none" }, // smのみ表示
+            zIndex: {
+              xs: 36,
+              sm: 28,
+            },
+          }}
+        />
+        {/* Center Box */}
+        <CustomRectangle
+          color="white"
+          size={{
+            width: {
+              xs: "90%",
+              sm: "65%",
+              md: "35%",
+            },
+            height: "250px",
+          }}
+          zIndex={48}
+          direction={false}
+          sx={{
+            position: "absolute",
+            top: { xs: "8%", sm: "12%", md: "15%" },
+            left: {
+              xs: "15%",
+              sm: "35%",
+              md: "50%",
+            },
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "35%",
+              width: "70%",
+              mx: "15%",
+            }}
+          >
+            <Typography
+              variant="body1"
+              sx={{
+                textAlign: "left",
+                color: "black",
+                lineHeight: 1.6,
+                fontSize: {
+                  xs: "12px",
+                  sm: "clamp(12px, 1vw, 14px)",
+                  md: "clamp(12px, 1vw, 14px)",
+                },
+              }}
+            >
+              サービスやイベントの認知度を最大化するため、効果的なPR戦略を企画・実行します。オンライン・オフラインを問わず、ターゲット顧客へ最適なメッセージを届け、広く魅力を発信します。
+            </Typography>
+          </Box>
+        </CustomRectangle>
+        <CustomRectangle
+          size={{
+            width: { xs: "80%", sm: "70%", md: "70%" },
+            height: { xs: "100px", sm: "100px", md: "100px" },
+          }}
+          zIndex={44}
+          direction={true}
+          sx={{
+            position: "absolute",
+            top: { xs: "15%", sm: "20%", md: "25%" },
+            left: { xs: "-5%", sm: "-5%", md: "-5%" },
+          }}
+        />
+
+        <CustomRectangle
+          size={{
+            width: { xs: "80%", sm: "70%", md: "70%" },
+            height: { xs: "80px", sm: "100px", md: "100px" },
+          }}
+          zIndex={45}
+          direction={true}
+          sx={{
+            position: "absolute",
+            top: { xs: "22%", sm: "35%", md: "35%" },
+            left: { xs: "-5%", sm: "-5%", md: "-5%" },
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "30%",
+              left: "30%",
+            }}
+          >
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: "bold",
+                color: "black",
+                textAlign: "left",
+                fontSize: {
+                  xs: "14px",
+                  sm: "clamp(18px, 2.5vw, 20px)",
+                  md: "clamp(18px, 2.5vw, 20px)",
+                },
+                mx: 2,
+              }}
+            >
+              Menu
+            </Typography>
+          </Box>
+        </CustomRectangle>
+
+        <Grid
+          container
+          spacing={3}
+          sx={{
+            position: "absolute",
+            top: { xs: "28%", sm: "42%", md: "42%" },
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: { xs: "90%", sm: "80%", md: "80%" },
+            mt: { xs: 0, sm: 5, md: 5 },
+            justifyContent: "left",
+            alignItems: "center",
+            zIndex: 50,
+          }}
+        >
+          {services.map((service, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Box
+                sx={{
+                  position: "relative",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textDecoration: "none",
+                  color: "black",
+                }}
+              >
+                <CustomRectangle
+                  color="white"
+                  size={{
+                    width: { xs: "60px", sm: "70px", md: "70px" },
+                    height: { xs: "60px", sm: "70px", md: "70px" },
+                  }}
+                  zIndex={50}
+                  direction={true}
+                  sx={{
+                    position: "absolute",
+                    top: "-25px", // 固定位置
+                    left: {
+                      xs: "calc(15% - 20px)", // xsサイズでの調整
+                      sm: "calc(15% - 50px)", // smサイズでの調整
+                      md: "calc(15% - 50px)", // mdサイズでの調整
+                      lg: "calc(20% - 50px)", // lgサイズでの調整
+                      xl: "calc(20% - 30px)", // xlサイズでの調整
+                    },
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontWeight: "bold",
+                      fontSize: { xs: "12px", sm: "14px", md: "14px" },
+                      color: "black",
+                      mb: 4,
+                      ml: 1.5,
+                    }}
+                  >
+                    {service.number}
+                  </Typography>
+                </CustomRectangle>
+
+                <CustomRectangle
+                  color="white"
+                  size={{
+                    width: { xs: "70%", sm: "70%", md: "70%" },
+                    height: { xs: "280px", sm: "300px", md: "300px" },
+                  }}
+                  zIndex={49}
+                  direction={true}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    padding: { xs: "20px", sm: "25px", md: "25px" },
+                    position: "relative",
+                    border: "1px solid #ddd",
+                    mb: 5,
+                    minWidth: "240px",
+                    maxWidth: { xs: "90%", sm: "270px", md: "270px" },
+                  }}
+                >
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: "20%",
+                      left: "10%",
+                      width: "80%",
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      className="title"
+                      sx={{
+                        fontWeight: "bold",
+                        fontSize: {
+                          xs: "14px",
+                          sm: "clamp(16px, 1vw, 18px)",
+                          md: "clamp(16px, 1vw, 18px)",
+                        },
+                        textAlign: "left",
+                        mb: 4,
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {service.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontSize: { xs: "12px", sm: "14px", md: "14px" },
+                        textAlign: "left",
+                        color: "#666",
+                      }}
+                    >
+                      {service.description}
+                    </Typography>
+                  </Box>
+                </CustomRectangle>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+
+      {/* FAQ Section */}
+      <Box
+        id="faq-section"
+        ref={sectionRef}
+        sx={{
+          position: "relative",
+          minHeight: { xs: "700px", sm: "800px", md: "750px" },
+          height: "auto",
+          width: "100vw",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: { xs: "20px", sm: "80px 40px", md: "80px 40px" },
+        }}
+      >
+        <CustomRectangle
+          size={{
+            width: { xs: "70%", sm: "70%", md: "70%" },
+            height: { xs: "80px", sm: "100px", md: "100px" },
+          }}
+          zIndex={38}
+          direction={true}
+          sx={{
+            position: "absolute",
+            top: { xs: "5%", sm: "5%", md: "5%" },
+            left: { xs: "-5%", sm: "-5%", md: "-5%" },
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "30%",
+              left: "30%",
+            }}
+          >
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: "bold",
+                color: "black",
+                textAlign: "left",
+                fontSize: {
+                  xs: "14px",
+                  sm: "clamp(18px, 2.5vw, 20px)",
+                  md: "clamp(18px, 2.5vw, 20px)",
+                },
+                mx: 2,
+              }}
+            >
+              よくある質問
+            </Typography>
+          </Box>
+        </CustomRectangle>
+
+        {/* FAQ Item 1 */}
+        <CustomRectangle
+          color="white"
+          size={{
+            width: { xs: "100%", sm: "100%", md: "100%" },
+            height: { xs: "120px", sm: "100px", md: "100px" },
+          }}
+          zIndex={49}
+          direction={true}
+          sx={{
+            position: "absolute",
+            top: { xs: "20%", sm: "23%", md: "23%" },
+            left: { xs: "-5%", sm: "-5%", md: "-5%" },
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: { xs: "15%", sm: "15%", md: "20%" },
+              left: { xs: "15%", sm: "30%", md: "30%" },
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: "bold",
+                mr: { xs: 2, sm: 2, md: 2 },
+                mb: { xs: 0, sm: 0, md: 0 },
+                minWidth: { xs: "250px", sm: "250px", md: "250px" },
+                color: "#333",
+                textAlign: { xs: "left", sm: "left", md: "left" },
+                fontSize: {
+                  xs: "14px",
+                  sm: "clamp(16px, 1vw, 18px)",
+                  md: "clamp(16px, 1vw, 18px)",
+                },
+              }}
+            >
+              SNS広告を使うメリットは何ですか？
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#666",
+                textAlign: { xs: "left", sm: "left", md: "left" },
+                maxWidth: { xs: "90%", sm: "800px", md: "800px" },
+                fontSize: {
+                  xs: "12px",
+                  sm: "clamp(14px, 1vw, 16px)",
+                  md: "clamp(14px, 1vw, 16px)",
+                },
+              }}
+            >
+              SNS広告はターゲット層を細かく絞り込めるため、地域や興味・関心に応じて効率的にアプローチできます。
+            </Typography>
+          </Box>
+        </CustomRectangle>
+
+        {/* FAQ Item 2 */}
+        <CustomRectangle
+          color="white"
+          size={{
+            width: { xs: "100%", sm: "100%", md: "100%" },
+            height: { xs: "120px", sm: "100px", md: "100px" },
+          }}
+          zIndex={49}
+          direction={false}
+          sx={{
+            position: "absolute",
+            top: { xs: "40%", sm: "40%", md: "40%" },
+            right: { xs: "-5%", sm: "-5%", md: "-5%" },
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: { xs: "15%", sm: "15%", md: "20%" },
+              left: { xs: "5%", sm: "20%", md: "20%" },
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: "bold",
+                mr: { xs: 2, sm: 2, md: 2 },
+                mb: { xs: 0, sm: 0, md: 0 },
+                minWidth: { xs: "250px", sm: "250px", md: "250px" },
+                color: "#333",
+                textAlign: { xs: "left", sm: "left", md: "left" },
+                fontSize: {
+                  xs: "14px",
+                  sm: "clamp(16px, 1vw, 18px)",
+                  md: "clamp(16px, 1vw, 18px)",
+                },
+              }}
+            >
+              SNS広告の予算はどのくらい必要ですか？
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#666",
+                textAlign: { xs: "left", sm: "left", md: "left" },
+                maxWidth: { xs: "80%", sm: "90%", md: "800px" },
+                fontSize: {
+                  xs: "12px",
+                  sm: "clamp(14px, 1vw, 16px)",
+                  md: "clamp(14px, 1vw, 16px)",
+                },
+              }}
+            >
+              広告のプラットフォームやターゲティング設定により異なりますが、少額の予算からでも効果的に運用可能です。
+            </Typography>
+          </Box>
+        </CustomRectangle>
+
+        {/* FAQ Item 3 */}
+        <CustomRectangle
+          color="white"
+          size={{
+            width: { xs: "100%", sm: "100%", md: "100%" },
+            height: { xs: "120px", sm: "100px", md: "100px" },
+          }}
+          zIndex={49}
+          direction={true}
+          sx={{
+            position: "absolute",
+            top: { xs: "60%", sm: "57%", md: "57%" },
+            left: { xs: "-5%", sm: "-5%", md: "-5%" },
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: { xs: "20%", sm: "15%", md: "20%" },
+              left: { xs: "15%", sm: "30%", md: "30%" },
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: "bold",
+                mr: { xs: 2, sm: 2, md: 2 },
+                mb: { xs: 0, sm: 0, md: 0 },
+                minWidth: { xs: "250px", sm: "250px", md: "250px" },
+                color: "#333",
+                textAlign: { xs: "left", sm: "left", md: "left" },
+                fontSize: {
+                  xs: "14px",
+                  sm: "clamp(16px, 1vw, 18px)",
+                  md: "clamp(16px, 1vw, 18px)",
+                },
+              }}
+            >
+              SNS広告で売上の向上は見込めますか？
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#666",
+                textAlign: { xs: "left", sm: "left", md: "left" },
+                maxWidth: { xs: "90%", sm: "800px", md: "800px" },
+                fontSize: {
+                  xs: "12px",
+                  sm: "clamp(14px, 1vw, 16px)",
+                  md: "clamp(14px, 1vw, 16px)",
+                },
+              }}
+            >
+              はい、ターゲット層を分析して効果的な広告を表示して、売り上げ増加が期待できます。
+            </Typography>
+          </Box>
+        </CustomRectangle>
+
+        <CustomRectangle
+          size={{
+            width: { xs: "70%", sm: "60%", md: "60%" },
+            height: { xs: "150px", sm: "300px", md: "300px" },
+          }}
+          zIndex={28}
+          direction={true}
+          sx={{
+            position: "absolute",
+            top: { xs: "65%", sm: "35%", md: "35%" },
+            left: { xs: "-5%", sm: "-5%", md: "-5%" },
+          }}
+        />
+
+        <CustomRectangle
+          size={{
+            width: { xs: "100%", sm: "100%", md: "100%" },
+            height: { xs: "150px", sm: "150px", md: "150px" },
+          }}
+          zIndex={2}
+          direction={false}
+          color="#f2f2f2"
+          sx={{
+            position: "absolute",
+            top: { xs: "70%", sm: "70%", md: "70%" },
+            right: { xs: "-5%", sm: "-5%", md: "-5%" },
+          }}
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            top: { xs: "80%", sm: "70%" },
+            left: { xs: "60%", sm: "60%" },
+            width: "100%",
+            mx: { xs: "5%", sm: "15%" },
+            zIndex: 100,
+          }}
+        >
+          <CircularText
+            text="CONTACT US " // 表示するテキスト
+            link="/contact" // クリック時の遷移先パス
+            size={isMobile ? 96 : 192}
+          />
+        </Box>
+      </Box>
+    </>
+  );
+};
+
+export default PRSupportSection;

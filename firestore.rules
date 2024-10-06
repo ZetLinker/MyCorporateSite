@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /news/{newsId} {
+      // 認証済みのユーザーには全てのドキュメントを読み取り可能にする
+      allow read: if request.auth != null || (
+        // 未認証のユーザーには、下記の条件が満たされている場合に読み取りを許可
+        resource.data.isDelete == false &&
+        resource.data.isDisplay == true &&
+        resource.data.isDraft == false &&
+        resource.data.date <= request.time
+      );
+
+      // 認証済みのadminユーザーのみが書き込み可能
+      allow write: if request.auth != null;
+    }
+
+    match /contact/{document} {
+      // 新規作成のルール
+      allow create: if request.resource.data.keys().hasOnly([
+        "name", "company", "tel", "email", "inquiryType", "subject", "message", "timestamp", "to"
+      ]) &&
+      request.resource.data.to == "base-web@kaneharaweb.com" ;
+
+      // 認証済みのユーザーにはフリーで書き込みを許可
+      allow write: if request.auth != null;
+
+      // 読み込みは認証済みユーザーのみ許可
+      allow read: if request.auth != null;
+
+      // 更新と削除は許可しない
+      allow update, delete: if false;
+    }
+  }
+}
