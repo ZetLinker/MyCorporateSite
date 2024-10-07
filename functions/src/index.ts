@@ -1,6 +1,7 @@
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";
 import * as cors from "cors";
+import * as nodemailer from "nodemailer";
 import {SecretManagerServiceClient} from "@google-cloud/secret-manager";
 import {google} from "googleapis";
 
@@ -25,93 +26,82 @@ async function accessSecretVersion(secretName: string): Promise<string> {
   return payload;
 }
 
-// Gmail APIの認証を行う関数
-async function getAuthenticatedClient() {
-  try {
-    const serviceAccountKey = await accessSecretVersion(
-      "FirebaseServiceAccountKey"
-    );
-
-    // サービスアカウントキーを使った認証
-    const auth = new google.auth.GoogleAuth({
-      credentials: JSON.parse(serviceAccountKey),
-      scopes: ["https://www.googleapis.com/auth/gmail.send"],
-    });
-
-    // OAuth2クライアントを取得
-    const authClient = await auth.getClient();
-
-    // authClientがOAuth2Clientかを確認
-    if (!(authClient instanceof google.auth.OAuth2)) {
-      throw new Error("Failed to create OAuth2Client");
-    }
-
-    return authClient;
-  } catch (error) {
-    console.error("Failed to authenticate:", error);
-    throw new Error("Failed to authenticate");
-  }
-}
-
-// Gmail APIでメールを送信する関数
-async function sendGmail(
-  name: string,
-  email: string,
-  tel: string,
-  title: string,
-  content: string
-) {
-  try {
-    const authClient = await getAuthenticatedClient();
-
-    // Gmail APIクライアントを初期化
-    const gmail = google.gmail({version: "v1", auth: authClient});
-
-    // メールの内容を作成
-    const emailContent = `To: kanehara.web@gmail.com
-From: your.email@gmail.com
-Subject: BaseWebお問い合わせ: ${title}
-
-名前: ${name}
-メール: ${email}
-電話番号: ${tel}
-内容:
-${content}`;
-
-    const encodedMessage = Buffer.from(emailContent)
-      .toString("base64")
-      .replace(/\+/g, "-")
-      .replace(/\//g, "_")
-      .replace(/=+$/, "");
-
-    // メールを送信
-    await gmail.users.messages.send({
-      userId: "me",
-      requestBody: {
-        raw: encodedMessage,
-      },
-    });
-
-    console.log("Email sent successfully");
-  } catch (error) {
-    console.error("Error sending email:", error);
-  }
-}
-
-// メール送信の処理を行うFirebase Function
-export const sendContactEmail = functions
+// リージョンを指定して関数をデプロイ
+export const sendEmail = functions
   .region("asia-northeast1")
-  .https.onRequest(async (req, res) => {
+  .https.onRequest((req, res) => {
     corsHandler(req, res, async () => {
-      const {name, email, tel, title, content} = req.body;
+      console.log("Received request body:", JSON.stringify(req.body, null, 2));
+
+      // 送信データを解構して変数に代入
+      const {
+        company,
+        email,
+        inquiryType,
+        message,
+        name,
+        subject,
+        tel,
+        timestamp,
+      } = req.body.data;
+
+      // 必須項目のバリデーション（company と tel は必須ではない）
+      if (
+        !name ||
+        !email ||
+        !subject ||
+        !message ||
+        !inquiryType ||
+        !timestamp
+      ) {
+        console.error("Missing required fields");
+        res.status(400).json({error: "Missing required fields"});
+        return;
+      }
 
       try {
-        await sendGmail(name, email, tel, title, content);
+        // smtpPasswordを関数内で取得
+        const smtpPassword = await accessSecretVersion("SmtpPassword");
+
+        // XserverのSMTPサーバ設定
+        const transporter = nodemailer.createTransport({
+          host: "mail1032.onamae.ne.jp",
+          port: 465,
+          secure: true,
+          auth: {
+            user: "info@zetlinker.com",
+            pass: smtpPassword,
+          },
+          tls: {
+            rejectUnauthorized: false,
+            minVersion: "TLSv1",
+          },
+        });
+
+        // メールオプションの作成
+        const mailOptions = {
+          from: "info@zetlinker.com", // 送信元アドレス
+          to: "zetlinker@gmail.com", // 受信先アドレス
+          subject: `お問い合わせ通知: ${subject}`, // 件名
+          text: `
+            会社名: ${company || "未記入"}
+            名前: ${name}
+            メール: ${email}
+            電話番号: ${tel || "未記入"}
+            問い合わせ種別: ${inquiryType}
+            メッセージ: ${message}
+            タイムスタンプ: ${timestamp}
+          `,
+        };
+
+        // メールを送信
+        await transporter.sendMail(mailOptions);
         console.log("Email sent successfully");
         res.status(200).json({data: {message: "Email sent successfully"}});
       } catch (error) {
+        // エラーハンドリング
         console.error("Error sending email:", error);
-        res.status(500).json({data: {error: "Error sending email"}});
+        res.status(500).json({error: "Error sending email"});
       }
     });
   });

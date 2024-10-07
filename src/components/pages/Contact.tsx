@@ -145,6 +145,33 @@ const Contact: React.FC = () => {
           to: "base-web@kaneharaweb.com", // 固定の送信先
         });
 
+        // メール送信用APIを呼び出す
+        const emailResponse = await fetch(
+          "https://asia-northeast1-mycorporatesite-2d46f.cloudfunctions.net/sendEmail",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              data: {
+                name: formData.name,
+                company: formData.company,
+                email: formData.email,
+                tel: formData.tel,
+                inquiryType: inquiryTypeString,
+                subject: formData.subject,
+                message: formData.message,
+                timestamp: timestamp.toISOString(),
+              },
+            }),
+          }
+        );
+
+        if (!emailResponse.ok) {
+          throw new Error("メール送信に失敗しました");
+        }
+
         setSubmitSuccess(true);
         setOpenDialog(true);
         resetForm();
