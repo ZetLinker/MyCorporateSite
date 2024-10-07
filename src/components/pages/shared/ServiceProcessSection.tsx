@@ -280,7 +280,7 @@ const ServiceProcessSection: React.FC = () => {
                   <Typography
                     sx={{
                       fontWeight: "bold",
-                      fontSize: { xs: "12px", sm: "14px", md: "14px" },
+                      fontSize: { xs: "10px", sm: "12px", md: "12px" },
                       color: "black",
                       mb: 4,
                       mr: 1.5,
@@ -338,7 +338,7 @@ const ServiceProcessSection: React.FC = () => {
                     <Typography
                       variant="body2"
                       sx={{
-                        fontSize: { xs: "12px", sm: "14px", md: "14px" },
+                        fontSize: { xs: "10px", sm: "12px", md: "12px" },
                         textAlign: "left",
                         color: "#666",
                       }}

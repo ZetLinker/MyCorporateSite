@@ -107,7 +107,7 @@ const FiveSenseSection: React.FC = () => {
             >
               <br />
             </Box>
-            顧客と共に成長し、ポジティブな体験を提供する。
+            顧客と共に成長し、ポジティブな体験を提供する
           </Typography>
         </CustomEffect>
 
@@ -138,7 +138,7 @@ const FiveSenseSection: React.FC = () => {
             >
               <br />
             </Box>
-            自発的に思考し、価値を創造する。
+            自発的に思考し、価値を創造する
           </Typography>
         </CustomEffect>
 
@@ -169,7 +169,7 @@ const FiveSenseSection: React.FC = () => {
             >
               <br />
             </Box>
-            変化を恐れず、成長のチャンスとして捉える。
+            変化を恐れず、成長のチャンスとして捉える
           </Typography>
         </CustomEffect>
 
@@ -200,7 +200,7 @@ const FiveSenseSection: React.FC = () => {
             >
               <br />
             </Box>
-            小さな成功も大切にし、喜びを共有する。
+            小さな成功も大切にし、喜びを共有する
           </Typography>
         </CustomEffect>
 
@@ -231,7 +231,7 @@ const FiveSenseSection: React.FC = () => {
             >
               <br />
             </Box>
-            他者をやる気にさせ、共に成長する。
+            他者をやる気にさせ、共に成長する
           </Typography>
         </CustomEffect>
       </Box>
