@@ -61,7 +61,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
-    script.src = "https://www.googletagmanager.com/gtag/js?id=G-T74F2B61CB"; // YOUR_MEASUREMENT_IDに置き換え
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-QMR73FXFFR"; // YOUR_MEASUREMENT_IDに置き換え
     document.head.appendChild(script);
 
     script.onload = () => {

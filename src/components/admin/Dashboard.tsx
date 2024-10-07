@@ -101,11 +101,19 @@ const Dashboard: React.FC = () => {
     try {
       const getAnalyticsData = httpsCallable<
         { startDate: string; endDate: string },
-        any[]
+        any
       >(functions, "getAnalyticsData");
       const result = await getAnalyticsData({ startDate: start, endDate: end });
 
       const rawData = result.data;
+
+      if (!Array.isArray(rawData) || rawData.length === 0) {
+        setError("Google Analyticsにデータが存在しません。");
+        setData([]); // データをリセット
+        setLoading(false);
+        return;
+      }
+
       const allDates = generateDateRange(start, end);
       const formattedData = allDates.map((date) => {
         const found = rawData.find(

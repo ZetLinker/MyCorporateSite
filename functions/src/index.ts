@@ -16,7 +16,7 @@ const secretManagerClient = new SecretManagerServiceClient();
 // シークレットのバージョンを取得する関数
 async function accessSecretVersion(secretName: string): Promise<string> {
   const [version] = await secretManagerClient.accessSecretVersion({
-    name: `projects/451944026720/secrets/${secretName}/versions/latest`, // Secretの場所を指定
+    name: `projects/348782816876/secrets/${secretName}/versions/latest`, // Secretの場所を指定
   });
   const payload = version.payload?.data?.toString();
   if (!payload) {
@@ -147,7 +147,7 @@ export const getAnalyticsData = functions
 
       // 必要なメトリクスを全て追加
       const response = await analyticsDataClient.properties.runReport({
-        property: "properties/454763418", // YOUR_PROPERTY_IDをGA4のプロパティIDに置き換えてください
+        property: "properties/461671887",
         requestBody: {
           dateRanges: [
             {
@@ -167,13 +167,28 @@ export const getAnalyticsData = functions
         },
       });
 
-      if (!response.data || !response.data.rows) {
-        return {message: "No data available."};
+      // 1. データが存在しない場合の処理
+      if (
+        !response.data ||
+        !response.data.rows ||
+        response.data.rows.length === 0
+      ) {
+        return {message: "No data available"}; // データがない場合の返答
+      }
+
+      // 2. データが空の場合の処理
+      if (response.data.rows.length === 0) {
+        return {
+          message:
+            "No analytics data found. Please check your data range or wait for data collection.",
+        };
       }
 
       return response.data.rows;
     } catch (error) {
       console.error("Failed to fetch analytics data:", error);
+
+      // 3. エラーメッセージをクライアントに返す
       throw new functions.https.HttpsError(
         "internal",
         "Error fetching analytics data"
