@@ -142,7 +142,6 @@ const Contact: React.FC = () => {
           ...formData,
           inquiryType: inquiryTypeString,
           timestamp,
-          to: "base-web@kaneharaweb.com", // 固定の送信先
         });
 
         // メール送信用APIを呼び出す
