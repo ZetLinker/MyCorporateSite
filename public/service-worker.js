@@ -1,4 +1,4 @@
-const CACHE_NAME = "baseweb-cache-v2"; // バージョンを変更
+const CACHE_NAME = "zetlinker-cache-v2"; // バージョンを変更
 const urlsToCache = [
   "/",
   "/index.html",

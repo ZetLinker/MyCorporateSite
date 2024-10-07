@@ -41,7 +41,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify("production"),
-      "process.env.PUBLIC_URL": JSON.stringify("https://baseweb.com/"),
+      "process.env.PUBLIC_URL": JSON.stringify("https://zetlinker.com/"),
     }),
   ],
   devServer: {

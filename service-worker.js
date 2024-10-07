@@ -1,4 +1,4 @@
-const CACHE_NAME = "baseweb-cache-v1";
+const CACHE_NAME = "zetlinker-cache-v1";
 const urlsToCache = [
   "/",
   "/index.html",
