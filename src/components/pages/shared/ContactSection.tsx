@@ -211,7 +211,7 @@ const ContactSection: React.FC = () => {
         <CircularText
           text="CONTACT US " // 表示するテキスト
           link="/contact" // クリック時の遷移先パス
-          size={isMobile ? 100 : 192} // モバイルでは200、他では350
+          size={isMobile ? 96 : 192} // モバイルでは200、他では350
         />
       </Box>
       <CustomRectangle
