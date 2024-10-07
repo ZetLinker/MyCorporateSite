@@ -21,7 +21,6 @@ import Service from "./components/pages/Service";
 import Login from "./components/login/Login";
 import ScrollToTop from "./components/util/ScrollToTop";
 import NewsDetail from "./components/pages/NewsDetail";
-import Company from "./components/pages/Company";
 import AboutUs from "./components/pages/AboutUs";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy";
 import Sidebar from "./components/admin/Sidebar";
@@ -152,7 +151,6 @@ const App: React.FC = () => {
                       <Route path="/aboutus" element={<AboutUs />} />
                       <Route path="/service" element={<Service />} />
                       <Route path="/news" element={<News />} />
-                      <Route path="/company" element={<Company />} />
                       <Route path="/contact" element={<Contact />} />
                       <Route
                         path="/privacy-policy"
